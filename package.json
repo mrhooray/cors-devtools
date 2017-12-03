@@ -4,6 +4,8 @@
   "description": "",
   "main": "background.js",
   "scripts": {
+    "format": "npm run format-path **/*[!-lock].{js,json}",
+    "format-path": "prettier --single-quote --write",
     "precommit": "lint-staged",
     "test": "eslint **/*.js"
   },
@@ -17,16 +19,29 @@
     "url": "https://github.com/mrhooray/cors-devtools/issues"
   },
   "homepage": "https://github.com/mrhooray/cors-devtools#readme",
-  "lint-staged": {
-    "**/*.js": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "eslint": "^4.12.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "prettier": "^1.8.2"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "globals": {
+      "chrome": true
+    },
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "lint-staged": {
+    "**/*[!-lock].{js,json}": ["npm run format-path", "git add"]
   }
 }
