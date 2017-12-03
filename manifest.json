@@ -1,15 +1,15 @@
 {
-    "manifest_version": 2,
-    "name": "CORS Developer Tools",
-    "version": "0.0.1",
-    "background": {
-        "scripts": ["background.js"]
-    },
-    "permissions": [
-        "debugger",
-        "tabs",
-        "webRequest",
-        "webRequestBlocking",
-        "<all_urls>"
-    ]
+  "manifest_version": 2,
+  "name": "CORS Developer Tools",
+  "version": "0.0.1",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "debugger",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ]
 }

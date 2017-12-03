@@ -1,0 +1,32 @@
+{
+  "name": "cors-devtools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "eslint **/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrhooray/cors-devtools.git"
+  },
+  "author": "Rui Hu <code@mrhooray.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrhooray/cors-devtools/issues"
+  },
+  "homepage": "https://github.com/mrhooray/cors-devtools#readme",
+  "lint-staged": {
+    "**/*.js": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.8.2"
+  }
+}
