@@ -61,9 +61,12 @@ chrome.debugger.onEvent.addListener((source, method, params) => {
           rawResponse: btoa(
             'HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: ' +
               params.request.headers.Origin +
-              '\r\nAccess-Control-Allow-Methods: *\r\nAccess-Control-Allow-Headers: *\r\n' +
-              'Access-Control-Allow-Credentials: true\r\nAccess-Control-Max-Age: 86400\r\n' +
-              'Content-Type: text/plain\r\nContent-Length: 0\r\n\r\n'
+              '\r\nAccess-Control-Allow-Headers: ' +
+              params.request.headers['Access-Control-Request-Headers'] +
+              '\r\nAccess-Control-Allow-Methods: ' +
+              params.request.headers['Access-Control-Request-Method'] +
+              '\r\nAccess-Control-Allow-Credentials: true' +
+              '\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n'
           )
         }
       );
