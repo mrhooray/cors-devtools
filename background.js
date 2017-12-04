@@ -50,9 +50,27 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
 });
 
 chrome.debugger.onEvent.addListener((source, method, params) => {
-  console.log(source, method, params);
   if (method === 'Network.requestIntercepted') {
-    console.log('continue request');
+    if (params.request.method.toLowerCase() === 'options') {
+      console.log('override options response', params);
+      chrome.debugger.sendCommand(
+        source,
+        'Network.continueInterceptedRequest',
+        {
+          interceptionId: params.interceptionId,
+          rawResponse: btoa(
+            'HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: ' +
+              params.request.headers.Origin +
+              '\r\nAccess-Control-Allow-Methods: *\r\nAccess-Control-Allow-Headers: *\r\n' +
+              'Access-Control-Allow-Credentials: true\r\nAccess-Control-Max-Age: 86400\r\n' +
+              'Content-Type: text/plain\r\nContent-Length: 0\r\n\r\n'
+          )
+        }
+      );
+      return;
+    }
+
+    console.log('continue request', params);
     chrome.debugger.sendCommand(source, 'Network.continueInterceptedRequest', {
       interceptionId: params.interceptionId
     });
