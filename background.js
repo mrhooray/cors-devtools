@@ -6,6 +6,7 @@ const allowOriginHeader = 'Access-Control-Allow-Origin';
 const allowHeadersHeader = 'Access-Control-Allow-Headers';
 const allowMethodsHeader = 'Access-Control-Allow-Methods';
 const allowCredentialsHeader = 'Access-Control-Allow-Credentials';
+const maxAgeHeader = 'Access-Control-Max-Age';
 const requestHeadersHeader = 'Access-Control-Request-Headers';
 const requestMethodHeader = 'Access-Control-Request-Method';
 const originHeader = 'Origin';
@@ -95,6 +96,7 @@ chrome.debugger.onEvent.addListener((source, method, params) => {
               `\r\n${allowMethodsHeader}: ` +
               params.request.headers[`${requestMethodHeader}`] +
               `\r\n${allowCredentialsHeader}: true` +
+              `\r\n${maxAgeHeader}: 600` +
               '\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n'
           )
         }
