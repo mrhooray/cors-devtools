@@ -127,6 +127,11 @@ function onHeadersReceivedHandler(details) {
       allowOriginHeader,
       origins.get(details.requestId) || '*'
     );
+    addIfNotExist(
+      details.responseHeaders,
+      'Access-Control-Expose-Headers',
+      'Rpc-Status'
+    );
     addIfNotExist(details.responseHeaders, allowCredentialsHeader, 'true');
   }
 
