@@ -121,7 +121,7 @@ function onBeforeSendHeadersHandler(details) {
 }
 
 function onHeadersReceivedHandler(details) {
-  if (details.method.toLowerCase !== optionsMethod.toLowerCase()) {
+  if (details.method.toLowerCase() !== optionsMethod.toLowerCase()) {
     addIfNotExist(
       details.responseHeaders,
       allowOriginHeader,
